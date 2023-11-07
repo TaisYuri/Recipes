@@ -9,7 +9,4 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FFF46436</color>
 
-    <color name="button_pressed">#40C4FF</color>
-    <color name="button_focused">#ff8a00</color>
-    <color name="button_default">#E040FB</color>
 </resources>

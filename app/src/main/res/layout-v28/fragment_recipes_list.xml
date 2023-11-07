@@ -64,38 +64,48 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_inpiration">
 
-        <ToggleButton
+        <RadioButton
             android:id="@+id/button_choice_vegetarian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/button_background_selected"
-            android:textOn="@string/vegetarian"
-            android:textOff="@string/vegetarian" />
+            android:button="@null"
+            android:drawableLeft="@null"
+            android:text="@string/vegetarian"
+            android:textColor="@drawable/button_filter_text_color" />
 
-        <ToggleButton
+        <RadioButton
             android:id="@+id/button_choice_salad"
-            android:background="@drawable/button_background_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
-            android:textOn="@string/salad"
-            android:textOff="@string/salad" />
+            android:background="@drawable/button_background_selected"
+            android:button="@null"
+            android:drawableLeft="@null"
+            android:text="@string/salad"
+            android:layout_marginEnd="8dp"
 
-        <ToggleButton
+            android:textColor="@drawable/button_filter_text_color" />
+
+        <RadioButton
             android:id="@+id/button_choice_dessert"
-            android:background="@drawable/button_background_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
-            android:textOn="@string/dessert"
-            android:textOff="@string/dessert" />
+            android:background="@drawable/button_background_selected"
+            android:button="@null"
+            android:drawableLeft="@null"
+            android:text="@string/dessert"
+            android:textColor="@drawable/button_filter_text_color" />
     </RadioGroup>
 
     <androidx.recyclerview.widget.RecyclerView

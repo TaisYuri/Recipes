@@ -1,20 +1,14 @@
 package com.example.recipes.presentation.recipes
 
-import android.content.res.ColorStateList
-import android.graphics.Color
+
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.recreate
-import androidx.core.view.ViewCompat
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipes.R
@@ -67,16 +61,6 @@ class RecipesListFragment : Fragment(), ItemListener {
         _binding = null
     }
 
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-    override fun onItemSelected(position: Int) {
-        TODO("Not yet implemented")
-    }
-
     private fun observer() {
         viewModel.recipesList.observe(viewLifecycleOwner) {
             it?.let {
@@ -103,38 +87,21 @@ class RecipesListFragment : Fragment(), ItemListener {
         val buttonVeg = binding.buttonChoiceVegetarian
         val buttonDessert = binding.buttonChoiceDessert
 
-        buttonVeg?.setOnCheckedChangeListener  {buttonView, isChecked ->
-            if(isChecked) {
-                Log.d("IFFF", "SELECIONADO")
-
-                viewModel.onSelected("vegetarian")
-            }else{
-                Log.d("ELSEEE", "NAO SELECIONADO")
-                buttonView.setBackgroundResource(R.drawable.button_background)
-            }
-         /*   it.setBackgroundResource(R.drawable.button_background_selected)
-            buttonVeg.setTextColor(Color.WHITE)
-
-            buttonSalad.setBackgroundResource(R.drawable.button_background)
-            buttonDessert.setBackgroundResource(R.drawable.button_background)*/
+        buttonVeg?.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.onSelected("vegetarian")
         }
 
         buttonSalad.setOnClickListener {
             viewModel.onSelected("salad")
-         /*   it.setBackgroundResource(R.drawable.button_background_selected)
-
-            buttonVeg?.setBackgroundResource(R.drawable.button_background)
-            buttonDessert.setBackgroundResource(R.drawable.button_background)*/
         }
 
         buttonDessert.setOnClickListener {
             viewModel.onSelected("dessert")
-           /* it.setBackgroundResource(R.drawable.button_background_selected)
-
-            buttonVeg?.setBackgroundResource(R.drawable.button_background)
-            buttonSalad.setBackgroundResource(R.drawable.button_background)*/
         }
+    }
 
+    override fun onItemSelected(position: Int) {
+        TODO("Not yet implemented")
     }
 
 }

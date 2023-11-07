@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item  android:drawable="@color/button_pressed" android:state_pressed="true" /> <!-- pressed -->
-    <item android:drawable="@color/button_focused" android:state_focused="true" /> <!-- focused -->
-    <item android:drawable="@color/teal_200"  android:state_selected="true" /> <!-- focused -->
-    <item android:drawable="@color/orange"  android:state_checkable="true" /> <!-- focused -->
-    <item android:drawable="@color/teal_700"  android:state_last="true" /> <!-- focused -->
-    <item android:drawable="@color/purple_500"  android:state_checked="true" /> <!-- focused -->
+    <item android:drawable="@drawable/button_filter_selected"  android:state_checked="true" /> <!-- checked -->
 
-    <item android:drawable="@color/button_default" android:state_checked="false"/> <!-- default -->
-    <item android:drawable="@color/button_default" /> <!-- default -->
+    <item android:drawable="@drawable/button_filter" android:state_checked="false"/> <!-- default false-->
+    <item android:drawable="@drawable/button_filter" /> <!-- default -->
 </selector>
