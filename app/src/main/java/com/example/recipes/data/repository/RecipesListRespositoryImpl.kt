@@ -8,11 +8,12 @@ import com.example.recipes.domain.model.RecipesList
 import com.example.recipes.domain.repository.RecipeListRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class RecipesListRespositoryImpl() : RecipeListRepository {
+class RecipesListRespositoryImpl @Inject constructor(private val recipesDataSource: RecipeListDataSourceImpl) :
+    RecipeListRepository {
 
-    private val recipesDataSource = RecipeListDataSourceImpl()
-
+    //private val recipesDataSource = RecipeListDataSourceImpl()
     override fun getRecipesList(query: String): Flow<List<RecipesList.Recipes>> =
         recipesDataSource.getRecipesList(query).map {
             mapRecipesListItem(it)

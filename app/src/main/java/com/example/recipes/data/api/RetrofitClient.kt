@@ -12,13 +12,7 @@ class RetrofitClient private constructor() {
         private fun getRetrofitInstance(): Retrofit {
             val httpClient = OkHttpClient.Builder()
 
-            httpClient.addInterceptor { chain ->
-                val request = chain.request()
-                    .newBuilder()
-                    .addHeader("apiKey", apiKey)
-                    .build()
-                chain.proceed(request)
-            }
+
 
             if (!::INSTANCE.isInitialized) {
                 synchronized(RetrofitClient::class) {
@@ -36,8 +30,6 @@ class RetrofitClient private constructor() {
             return getRetrofitInstance().create(serviceClass)
         }
 
-        fun addHeaders(tokenValue: String) {
-            apiKey = tokenValue
-        }
+
     }
 }

@@ -1,6 +1,5 @@
 package com.example.recipes.data.mapper
 
-import com.example.recipes.data.model.response.RecipeDetailResponse
 import com.example.recipes.data.model.response.RecipesListResponse
 import com.example.recipes.domain.model.RecipesList
 

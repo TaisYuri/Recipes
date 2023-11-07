@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipes.domain.model.RecipesList
 import com.example.recipes.domain.usecase.GetRecipesListUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -13,12 +15,16 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RecipesListViewModel(
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+@HiltViewModel
+class RecipesListViewModel @Inject constructor(
+    private val recipesListUseCase: GetRecipesListUseCase,
 ): ViewModel() {
 
-    private val recipesListUseCase = GetRecipesListUseCase()
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+
+    //private val recipesListUseCase = GetRecipesListUseCase()
 
     val recipesList = MutableLiveData<List<RecipesList.Recipes>>()
     val recipesList2 = MutableLiveData<List<RecipesList.Recipes>>()

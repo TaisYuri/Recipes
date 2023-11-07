@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class RecipeDetailResponse(
+data class RecipesDataResponse(
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")

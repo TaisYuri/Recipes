@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -93,7 +95,6 @@ dependencies {
     //COROUTINES
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 
-
     //DATABINDING
     implementation("androidx.databinding:databinding-common:8.1.1")
     implementation("androidx.databinding:databinding-runtime:8.1.1")
@@ -101,17 +102,29 @@ dependencies {
     //ROOM
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
-
-    /*
 
     //HILT
     implementation("com.google.dagger:hilt-android:2.44")
-    //kapt("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     //HILT With navigation Component
     implementation("androidx.hilt:hilt-navigation:1.0.0")
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
-        */
+
+    //TESTE UNITÁRIO COM MOKK
+    testImplementation("com.google.truth:truth:1.1.4")
+    testImplementation("io.mockk:mockk-common:1.12.5")
+    testImplementation("io.mockk:mockk:1.12.5")
+
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.1.51")
+
+
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

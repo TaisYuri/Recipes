@@ -3,6 +3,7 @@ package com.example.recipes.presentation.recipes
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.core.view.ViewCompat
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +26,7 @@ import com.example.recipes.presentation.recipes.adapter.ListChoiceAdapter
 
 class RecipesListFragment : Fragment(), ItemListener {
 
-    private val viewModel by navGraphViewModels<RecipesListViewModel>(R.id.nav_graph) { defaultViewModelProviderFactory }
+    private val viewModel by hiltNavGraphViewModels<RecipesListViewModel>(R.id.nav_graph)
     private var _binding: FragmentRecipesListBinding? = null
     private lateinit var adapter: ListAdapter
     private lateinit var adapterChoice: ListChoiceAdapter
@@ -101,30 +103,38 @@ class RecipesListFragment : Fragment(), ItemListener {
         val buttonVeg = binding.buttonChoiceVegetarian
         val buttonDessert = binding.buttonChoiceDessert
 
-        buttonVeg?.setOnClickListener {
-            viewModel.onSelected("vegetarian")
-            it.setBackgroundResource(R.drawable.button_background_selected)
+        buttonVeg?.setOnCheckedChangeListener  {buttonView, isChecked ->
+            if(isChecked) {
+                Log.d("IFFF", "SELECIONADO")
+
+                viewModel.onSelected("vegetarian")
+            }else{
+                Log.d("ELSEEE", "NAO SELECIONADO")
+                buttonView.setBackgroundResource(R.drawable.button_background)
+            }
+         /*   it.setBackgroundResource(R.drawable.button_background_selected)
             buttonVeg.setTextColor(Color.WHITE)
 
             buttonSalad.setBackgroundResource(R.drawable.button_background)
-            buttonDessert.setBackgroundResource(R.drawable.button_background)
+            buttonDessert.setBackgroundResource(R.drawable.button_background)*/
         }
 
         buttonSalad.setOnClickListener {
             viewModel.onSelected("salad")
-            it.setBackgroundResource(R.drawable.button_background_selected)
+         /*   it.setBackgroundResource(R.drawable.button_background_selected)
 
             buttonVeg?.setBackgroundResource(R.drawable.button_background)
-            buttonDessert.setBackgroundResource(R.drawable.button_background)
+            buttonDessert.setBackgroundResource(R.drawable.button_background)*/
         }
 
         buttonDessert.setOnClickListener {
             viewModel.onSelected("dessert")
-            it.setBackgroundResource(R.drawable.button_background_selected)
+           /* it.setBackgroundResource(R.drawable.button_background_selected)
 
             buttonVeg?.setBackgroundResource(R.drawable.button_background)
-            buttonSalad.setBackgroundResource(R.drawable.button_background)
+            buttonSalad.setBackgroundResource(R.drawable.button_background)*/
         }
+
     }
 
 }
