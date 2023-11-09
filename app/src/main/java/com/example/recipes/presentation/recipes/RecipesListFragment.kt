@@ -8,7 +8,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipes.R
@@ -16,11 +15,12 @@ import com.example.recipes.databinding.FragmentRecipesListBinding
 import com.example.recipes.presentation.recipes.adapter.ItemListener
 import com.example.recipes.presentation.recipes.adapter.ListAdapter
 import com.example.recipes.presentation.recipes.adapter.ListChoiceAdapter
+import org.koin.androidx.navigation.koinNavGraphViewModel
 
 
 class RecipesListFragment : Fragment(), ItemListener {
 
-    private val viewModel by hiltNavGraphViewModels<RecipesListViewModel>(R.id.nav_graph)
+    private val viewModel by koinNavGraphViewModel<RecipesListViewModel>(R.id.nav_graph)
     private var _binding: FragmentRecipesListBinding? = null
     private lateinit var adapter: ListAdapter
     private lateinit var adapterChoice: ListChoiceAdapter

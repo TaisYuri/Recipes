@@ -4,9 +4,8 @@ import com.example.recipes.data.api.Service
 import com.example.recipes.data.model.response.RecipesListResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 
-class RecipeListDataSourceImpl @Inject constructor(private val service: Service ):RecipeListDataSource {
+class RecipeListDataSourceImpl (private val service: Service ):RecipeListDataSource {
 
     //private val service = RetrofitClient.getService(Service::class.java)
     override fun getRecipesList(query: String): Flow<RecipesListResponse> =

@@ -5,9 +5,8 @@ import com.example.recipes.data.repository.RecipesListRespositoryImpl
 import com.example.recipes.domain.model.RecipesList
 import com.example.recipes.domain.repository.RecipeListRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class GetRecipesListUseCase @Inject constructor(private val recipesListRespository: RecipesListRespositoryImpl) {
+class GetRecipesListUseCase (private val recipesListRespository: RecipeListRepository) {
 
     //private val recipesListRespository = RecipesListRespositoryImpl()
 

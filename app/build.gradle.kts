@@ -4,7 +4,6 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     kotlin("kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -105,13 +104,24 @@ dependencies {
     kapt("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
 
-    //HILT
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    /* //HILT
+     implementation("com.google.dagger:hilt-android:2.44")
+     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
-    //HILT With navigation Component
-    implementation("androidx.hilt:hilt-navigation:1.0.0")
-    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+     //HILT With navigation Component
+     implementation("androidx.hilt:hilt-navigation:1.0.0")
+     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")*/
+
+    // Koin
+    implementation("io.insert-koin:koin-core:3.4.0")
+    implementation("io.insert-koin:koin-android:3.4.0")
+    // Navigation Graph
+    implementation("io.insert-koin:koin-androidx-navigation:3.4.0")
+
+    // Koin Test
+    testImplementation("io.insert-koin:koin-test:3.4.0")
+    testImplementation("io.insert-koin:koin-test-junit4:3.4.0")
+    testImplementation("org.mockito:mockito-inline:4.8.0")
 
     //TESTE UNITÁRIO COM MOKK
     testImplementation("com.google.truth:truth:1.1.4")
