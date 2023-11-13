@@ -94,6 +94,9 @@ dependencies {
 
     //COROUTINES
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
 
     //DATABINDING
     implementation("androidx.databinding:databinding-common:8.1.1")
