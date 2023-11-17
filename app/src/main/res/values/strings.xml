@@ -15,13 +15,8 @@
     <string name="dessert">dessert</string>
     <string name="category">Popular category</string>
     <string name="wines">Food &amp; Wine</string>
-    <string name="wines_title_italian">Vinho A</string>
-    <string name="wines_paired_wines"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis</string>
+    <string name="wines_title_italian">Santa Margherita Chianti</string>
+    <string name="wines_paired">The aromas of this complex red wine range from cherries and plums to gladiolus flowers and earthy flint. The tannic, oak-aged flavors are bright and round, with a dry, warm, earthy finish. Recommended for barbecued meat, like sliced Chianina steak, or with game, such as pheasant stuffed with truffles. It is also excellent with mature cheese.s</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

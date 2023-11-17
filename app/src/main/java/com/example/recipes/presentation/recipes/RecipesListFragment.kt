@@ -8,7 +8,11 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipes.R
@@ -18,13 +22,12 @@ import com.example.recipes.presentation.recipes.adapter.ListAdapter
 import com.example.recipes.presentation.recipes.adapter.ListChoiceAdapter
 
 
-class RecipesListFragment : Fragment(), ItemListener {
+class RecipesListFragment : Fragment(), ItemListener, CompoundButton.OnCheckedChangeListener {
 
     private val viewModel by hiltNavGraphViewModels<RecipesListViewModel>(R.id.nav_graph)
     private var _binding: FragmentRecipesListBinding? = null
     private lateinit var adapter: ListAdapter
     private lateinit var adapterChoice: ListChoiceAdapter
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -46,7 +49,11 @@ class RecipesListFragment : Fragment(), ItemListener {
             this.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         }
 
-        clickedButtonChoice()
+        binding.buttonVegetarian?.isChecked  = true
+        binding.buttonVegetarian?.setOnCheckedChangeListener(this)
+        binding.buttonSalad?.setOnCheckedChangeListener(this)
+        binding.buttonDessert?.setOnCheckedChangeListener(this)
+
         observer()
 
         return binding.root
@@ -82,26 +89,16 @@ class RecipesListFragment : Fragment(), ItemListener {
         }
     }
 
-    private fun clickedButtonChoice() {
-        val buttonSalad = binding.buttonChoiceSalad
-        val buttonVeg = binding.buttonChoiceVegetarian
-        val buttonDessert = binding.buttonChoiceDessert
-
-        buttonVeg?.setOnCheckedChangeListener { buttonView, isChecked ->
-            viewModel.onSelected("vegetarian")
-        }
-
-        buttonSalad.setOnClickListener {
-            viewModel.onSelected("salad")
-        }
-
-        buttonDessert.setOnClickListener {
-            viewModel.onSelected("dessert")
-        }
-    }
-
     override fun onItemSelected(position: Int) {
         TODO("Not yet implemented")
+    }
+
+    override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
+        when(buttonView.id){
+            R.id.button_vegetarian ->  viewModel.onSelected("vegetarian")
+            R.id.button_salad -> viewModel.onSelected("salad")
+            R.id.button_dessert -> viewModel.onSelected("dessert")
+        }
     }
 
 }
