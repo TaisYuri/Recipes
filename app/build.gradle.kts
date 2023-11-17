@@ -1,3 +1,5 @@
+import com.google.wireless.android.sdk.stats.TestRun
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -52,6 +54,11 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    testOptions {
+        tasks.withType<Test> {
+            useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
@@ -93,7 +100,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     //COROUTINES
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 
@@ -120,10 +127,14 @@ dependencies {
     testImplementation("com.google.truth:truth:1.1.4")
     testImplementation("io.mockk:mockk-common:1.12.5")
     testImplementation("io.mockk:mockk:1.12.5")
-
     testImplementation("app.cash.turbine:turbine:1.0.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.1.51")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
 
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.1")
 
 }
 

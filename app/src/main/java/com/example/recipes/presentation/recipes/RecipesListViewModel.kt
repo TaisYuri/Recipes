@@ -36,7 +36,7 @@ class RecipesListViewModel @Inject constructor(
         getRecipesList(recipesList2,"vegetarian")
     }
 
-    private fun getRecipesList(list: MutableLiveData<List<RecipesList.Recipes>>, typeRecipes: String){
+    fun getRecipesList(list: MutableLiveData<List<RecipesList.Recipes>>, typeRecipes: String){
         viewModelScope.launch {
             recipesListUseCase.invoke(typeRecipes)
                 .flowOn(dispatcher)
