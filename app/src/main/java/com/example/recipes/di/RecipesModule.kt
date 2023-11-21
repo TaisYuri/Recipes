@@ -6,6 +6,7 @@ import com.example.recipes.data.datasource.recipelist.RecipeListDataSourceImpl
 import com.example.recipes.data.repository.RecipesListRespositoryImpl
 import com.example.recipes.domain.repository.RecipeListRepository
 import com.example.recipes.domain.usecase.GetRecipesListUseCase
+import com.example.recipes.presentation.morerecipes.MoreRecipesViewModel
 import com.example.recipes.presentation.recipes.RecipesListViewModel
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -54,6 +55,11 @@ val presentationModule = module {
     viewModel {
         RecipesListViewModel(
             recipesListUseCase = get()
+        )
+    }
+    viewModel {
+        MoreRecipesViewModel(
+            useCase = get()
         )
     }
 }

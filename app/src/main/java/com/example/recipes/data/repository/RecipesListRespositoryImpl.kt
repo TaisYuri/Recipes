@@ -11,8 +11,8 @@ class RecipesListRespositoryImpl (private val recipesDataSource: RecipeListDataS
     RecipeListRepository {
 
     //private val recipesDataSource = RecipeListDataSourceImpl()
-    override fun getRecipesList(query: String): Flow<List<RecipesList.Recipes>> =
-        recipesDataSource.getRecipesList(query).map {
+    override fun getRecipesList(query: String, number: Int, offset: Int): Flow<List<RecipesList.Recipes>> =
+        recipesDataSource.getRecipesList(query, number, offset).map {
             mapRecipesListItem(it)
         }
 

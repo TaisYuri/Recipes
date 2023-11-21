@@ -19,6 +19,9 @@ class RecipesListViewModel (
     private val recipesListUseCase: GetRecipesListUseCase,
 ): ViewModel() {
 
+    private var NUMBER = 50
+    private var OFFSET = 1
+
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 
     //private val recipesListUseCase = GetRecipesListUseCase()
@@ -35,7 +38,7 @@ class RecipesListViewModel (
 
     fun getRecipesList(list: MutableLiveData<List<RecipesList.Recipes>>, typeRecipes: String){
         viewModelScope.launch {
-            recipesListUseCase.invoke(typeRecipes)
+            recipesListUseCase.invoke(typeRecipes, NUMBER,OFFSET)
                 .flowOn(dispatcher)
                 .onStart {  isLoading.value = true }
                 .catch {

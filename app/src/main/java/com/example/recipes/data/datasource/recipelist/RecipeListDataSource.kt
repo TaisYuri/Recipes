@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecipeListDataSource {
 
-    fun getRecipesList(query: String): Flow<RecipesListResponse>
+    fun getRecipesList(query: String, number: Int, offset: Int): Flow<RecipesListResponse>
 
 }

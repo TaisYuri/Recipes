@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecipeListRepository {
 
-    fun getRecipesList(query: String): Flow<List<RecipesList.Recipes>>
+    fun getRecipesList(query: String, number: Int, offset: Int): Flow<List<RecipesList.Recipes>>
 }
