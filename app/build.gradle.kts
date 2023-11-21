@@ -67,6 +67,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
+    implementation("androidx.test.ext:junit-ktx:1.1.5")
     val lifecycle_version = "2.5.0-alpha02"
     val nav_version = "2.5.3"
     val roomVersion = "2.4.1"

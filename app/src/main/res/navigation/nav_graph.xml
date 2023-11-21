@@ -10,10 +10,9 @@
         android:name="com.example.recipes.presentation.recipes.RecipesListFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_recipes_list">
-
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_FirstFragment_to_supermarketProductsFragment"
+            app:destination="@id/supermarketProductsFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -25,4 +24,9 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/supermarketProductsFragment"
+        android:name="com.example.recipes.presentation.supermarketproducts.SupermarketProductsFragment"
+        android:label="fragment_supermarket_products"
+        tools:layout="@layout/fragment_supermarket_products" />
 </navigation>

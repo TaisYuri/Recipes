@@ -12,6 +12,7 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -53,6 +54,10 @@ class RecipesListFragment : Fragment(), ItemListener, CompoundButton.OnCheckedCh
         binding.buttonVegetarian?.setOnCheckedChangeListener(this)
         binding.buttonSalad?.setOnCheckedChangeListener(this)
         binding.buttonDessert?.setOnCheckedChangeListener(this)
+
+        binding.btnSupermarket?.setOnClickListener{
+            findNavController().navigate(R.id.action_FirstFragment_to_supermarketProductsFragment)
+        }
 
         observer()
 
