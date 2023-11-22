@@ -6,23 +6,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipes.domain.model.RecipesList
 import com.example.recipes.domain.usecase.GetRecipesListUseCase
-
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class RecipesListViewModel (
     private val recipesListUseCase: GetRecipesListUseCase,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ): ViewModel() {
 
     private var NUMBER = 50
     private var OFFSET = 1
 
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 
     //private val recipesListUseCase = GetRecipesListUseCase()
 
@@ -38,7 +36,7 @@ class RecipesListViewModel (
 
     fun getRecipesList(list: MutableLiveData<List<RecipesList.Recipes>>, typeRecipes: String){
         viewModelScope.launch {
-            recipesListUseCase.invoke(typeRecipes, NUMBER,OFFSET)
+            recipesListUseCase.invoke2(typeRecipes, NUMBER,OFFSET)
                 .flowOn(dispatcher)
                 .onStart {  isLoading.value = true }
                 .catch {
@@ -46,7 +44,7 @@ class RecipesListViewModel (
                     isError.value = true
                     handleError(it)
                 }
-                .collectLatest {
+                .collect {
                     isLoading.value = false
                     isError.value = false
                     list.value = it

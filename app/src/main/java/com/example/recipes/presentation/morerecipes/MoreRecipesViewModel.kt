@@ -24,7 +24,7 @@ class MoreRecipesViewModel(private val useCase: GetRecipesListUseCase): ViewMode
 
     fun getRecipesMore(offset: Int){
         viewModelScope.launch {
-            useCase.invoke("pasta", NUMBER, offset)
+            useCase.invoke2("pasta", NUMBER, offset)
                 .flowOn(dispatcher)
                 .collectLatest {
                     recipesList.value = it

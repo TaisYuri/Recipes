@@ -1,83 +1,78 @@
-package com.example.recipes.presentation.recipes
 
+import android.os.Looper
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.recipes.domain.model.RecipesList
 import com.example.recipes.domain.usecase.GetRecipesListUseCase
+import com.example.recipes.presentation.recipes.RecipesListViewModel
 import com.example.recipes.stubs.stubData
 import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
+import io.mockk.mockkStatic
+import io.mockk.unmockkAll
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.ObsoleteCoroutinesApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.reset
+import org.mockito.kotlin.verify
 
-@RunWith(JUnit4::class)
-class RecipesListViewModelTest{
+@OptIn(ExperimentalCoroutinesApi::class)
+class RecipesListViewModelTest {
 
-    private lateinit var useCase: GetRecipesListUseCase
-    private lateinit var recipesViewModel: RecipesListViewModel
-    private lateinit var recipesListObserver: Observer<List<RecipesList.Recipes>>
-    private var mutable= MutableLiveData<List<RecipesList.Recipes>>()
-    val expectedRecipes = listOf(stubData)
-
-    @Rule
-    @JvmField
-    val instantExecutorRule = InstantTaskExecutorRule()
-
-    @ObsoleteCoroutinesApi
-    private val mainThreadSurrogate = newSingleThreadContext("UI thread")
+    @get:Rule
+    val instantTaskRule = InstantTaskExecutorRule()
 
     @ExperimentalCoroutinesApi
-    @ObsoleteCoroutinesApi
-    @Before
-    fun setUp() {
-        Dispatchers.setMain(mainThreadSurrogate)
-        useCase = mockk(relaxed = true)
-        recipesViewModel = RecipesListViewModel(useCase)
-        recipesListObserver = mockk(relaxed = true)
+    private val testDispatcher = UnconfinedTestDispatcher()
 
-        runBlocking {
-            coEvery { useCase.invoke("pasta") } returns flowOf (expectedRecipes)
-        }
+    private val useCase: GetRecipesListUseCase = mockk(relaxed = true)
+    private var recipesListObserver: Observer<List<RecipesList.Recipes>> = mock()
+    private lateinit var recipesViewModel: RecipesListViewModel
+
+    @BeforeEach
+    fun beforeEach() {
+        Dispatchers.setMain(testDispatcher)
+        mockLooper()
     }
 
-    @ObsoleteCoroutinesApi
-    @ExperimentalCoroutinesApi
     @After
     fun tearDown() {
-        Dispatchers.resetMain() // reset main dispatcher to the original Main dispatcher
-        mainThreadSurrogate.close()
+        Dispatchers.resetMain()
+        unmockkAll()
     }
 
     @Test
-    fun `getRecipesList should return RecipesList`() = runBlocking{
-
+    fun `getRecipesList should return RecipesList`() = runTest {
         // Given
+        reset(recipesListObserver)
+        val expectedRecipes = listOf(stubData)
+        coEvery { useCase.invoke2("pizza", 50, 1) } returns flow { emit(expectedRecipes) }
+
+        // When
+        recipesViewModel = RecipesListViewModel(recipesListUseCase = useCase, dispatcher = testDispatcher)
         recipesViewModel.recipesList.observeForever(recipesListObserver)
-        recipesViewModel.getRecipesList(mutable,"pasta")
-        delay(10)
 
+        // Then
+        verify(recipesListObserver).onChanged(expectedRecipes)
 
-        verify(exactly = 1) { recipesViewModel.getRecipesList(mutable,"pasta") }
-
-        verify(timeout = 50) { recipesListObserver.onChanged(expectedRecipes) }
     }
 
-    fun setupViewModel() {
-        recipesViewModel = RecipesListViewModel(recipesListUseCase = useCase)
+
+    private fun mockLooper() {
+        mockkStatic(Looper::class)
+        val looper = mockk<Looper> {
+            every { thread } returns Thread.currentThread()
+        }
+        every { Looper.getMainLooper() } returns looper
     }
 }

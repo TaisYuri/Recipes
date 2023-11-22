@@ -8,7 +8,8 @@ class GetRecipesListUseCase (private val recipesListRespository: RecipeListRepos
 
     //private val recipesListRespository = RecipesListRespositoryImpl()
 
-    operator fun invoke(query: String,number: Int, offset: Int): Flow<List<RecipesList.Recipes>>{
+    //operator fun invoke(query: String,number: Int, offset: Int): Flow<List<RecipesList.Recipes>>{   // --> normalmente utilizado desta forma. Porém, os testes
+    fun invoke2(query: String,number: Int, offset: Int): Flow<List<RecipesList.Recipes>>{
 
         return recipesListRespository.getRecipesList(query, number, offset)
     }

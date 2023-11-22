@@ -51,6 +51,12 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    testOptions {
+        tasks.withType<Test> {
+            useJUnitPlatform()
+            unitTests.isReturnDefaultValues = true
+        }
+    }
 }
 
 dependencies {
@@ -59,6 +65,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     val lifecycle_version = "2.5.0-alpha02"
     val nav_version = "2.5.3"
     val roomVersion = "2.4.1"
@@ -132,6 +139,8 @@ dependencies {
     testImplementation("app.cash.turbine:turbine:1.0.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.1.51")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
+
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
 
 
 }
