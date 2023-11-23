@@ -75,7 +75,7 @@ class MoreRecipesFragment : Fragment() {
                     val firstVisibleItemPosition: Int = layoutManager.findFirstVisibleItemPosition()  //Quantidade de items que foram escrolados para fora da tela (da posiçao inicial)
 
                     if (!isLoading() && !isLastPage()) {
-                        if (visibleItemCount + firstVisibleItemPosition == totalItemCount
+                        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
                             && firstVisibleItemPosition >= 0
                         ) {
                             currentPage += 1;
