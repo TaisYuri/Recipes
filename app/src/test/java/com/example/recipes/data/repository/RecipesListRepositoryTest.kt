@@ -21,10 +21,10 @@ class RecipesListRespositoryImplTest {
 
             // Given
             val expectedRecipes = stubData
-            coEvery { datasource.getRecipesList("pasta", 10,1) } returns flowOf(stubListResponse)
+            coEvery { datasource.getRecipesList("pasta", 10, 1) } returns flowOf(stubListResponse)
 
             // When
-            val response = repository.getRecipesList("pasta",10,1)
+            val response = repository.getRecipesList("pasta", 10, 1)
 
 
             // Then

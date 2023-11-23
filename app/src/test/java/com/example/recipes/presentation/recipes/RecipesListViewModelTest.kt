@@ -1,10 +1,10 @@
+package com.example.recipes.presentation.recipes
 
 import android.os.Looper
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.recipes.domain.model.RecipesList
 import com.example.recipes.domain.usecase.GetRecipesListUseCase
-import com.example.recipes.presentation.recipes.RecipesListViewModel
 import com.example.recipes.stubs.stubData
 import io.mockk.coEvery
 import io.mockk.every

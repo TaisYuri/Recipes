@@ -6,9 +6,9 @@ import com.example.recipes.domain.model.RecipesList
 
 class MoreRecipesListViewHolder(private val binding: ItemMoreItemsRecyclerBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun bindItem(item: RecipesList.Recipes){
+    fun bindItem(item: Int){
         binding.apply {
-            this.textTitle.text = item.title
+            this.textTitle.text = item.toString()
         }
     }
 }
