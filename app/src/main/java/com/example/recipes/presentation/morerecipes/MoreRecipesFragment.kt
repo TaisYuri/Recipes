@@ -36,6 +36,11 @@ class MoreRecipesFragment : Fragment() {
 
         binding.progress.visibility = View.GONE
 
+        //CustomView
+        binding.customFollowers.setCounter("50k")
+        binding.customFollowers.setIndicator("Teste teste")
+        binding.customFollowers.setBold(false)
+
         observer()
         loadRecycler()
 
@@ -57,7 +62,6 @@ class MoreRecipesFragment : Fragment() {
         viewModel.isLoading.observe(viewLifecycleOwner) {
             if (it) binding.progress.visibility = View.VISIBLE
             else binding.progress.visibility = View.GONE
-
         }
     }
 

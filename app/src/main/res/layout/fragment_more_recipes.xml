@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.morerecipes.MoreRecipesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
@@ -16,6 +15,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_followers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/recycler_more_recipes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_title">
+
+        <com.example.recipes.presentation.components.FollowersIndicator
+            android:id="@+id/custom_followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:counter="90"
+            app:indicator="recipes" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_more_recipes"
         android:layout_width="match_parent"
@@ -24,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title"
+        app:layout_constraintTop_toBottomOf="@+id/linear_followers"
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/item_more_items_recycler" />
 
@@ -32,18 +51,16 @@
         android:id="@+id/show_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/linear_background_orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/linear_background_orange"
-        >
+        app:layout_constraintStart_toStartOf="parent">
 
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:indeterminateTint="@color/white"
-            />
+            android:indeterminateTint="@color/white" />
     </FrameLayout>
 
 

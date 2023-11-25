@@ -65,6 +65,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     val lifecycle_version = "2.5.0-alpha02"
     val nav_version = "2.5.3"

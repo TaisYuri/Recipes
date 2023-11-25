@@ -51,6 +51,10 @@ class RecipesListFragment : Fragment(), ItemListener {
             findNavController().navigate(R.id.action_FirstFragment_to_moreRecipesFragment)
         }
 
+        //CustomView
+        binding.customProfileImage?.setImageProfile(R.drawable.irineu)
+        binding.customProfileImage?.setVisualized(0)
+
         clickedButtonChoice()
         observer()
 
